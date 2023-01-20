@@ -5,7 +5,7 @@ class GameState():
     def __init__(self) -> None:
         self.board = [
             ["b L", "b N", "b S", "b G", "b K", "b G", "b S", "b N", "b L"],
-            ["   ", "b B", "   ", "   ", "   ", "   ", "   ", "b R", "   "],
+            ["   ", "b R", "   ", "   ", "   ", "   ", "   ", "b B", "   "],
             ["b P", "b P", "b P", "b P", "b P", "b P", "b P", "b P", "b P"],
             ["   ", "   ", "   ", "   ", "   ", "   ", "   ", "   ", "   "],
             ["   ", "   ", "   ", "   ", "   ", "   ", "   ", "   ", "   "],
@@ -23,3 +23,4 @@ class GameState():
     def printBoard(self):
         for row in self.board:
             print(*row)
+

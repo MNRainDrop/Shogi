@@ -1,5 +1,5 @@
 """
-This class creats the board and runs most of the functions to play shogi.
+This class creates the board and runs most of the functions to play shogi.
 """
 class GameState():
     def __init__(self) -> None:

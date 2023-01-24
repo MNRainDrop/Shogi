@@ -53,7 +53,7 @@ def loadImages():
     #promotedPieces = ["bPL", "bPN", "bPS", "bPB", "bPR", "bPP", "wPL", "wPN", "wPS", "wPB", "wPR", "wPP"]
                 
     for piece in pieces:
-        images[piece] = p.transform.scale(p.image.load("Pieces/" + piece + ".png"), (tileSize, tileSize))
+        images[piece] = p.transform.scale(p.image.load("images/" + piece + ".png"), (tileSize, tileSize))
 
 def drawAll(screen, cols, rows, board):
     screen.fill(p.Color("#e6bc5c"))

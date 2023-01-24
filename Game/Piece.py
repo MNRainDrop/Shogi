@@ -3,23 +3,26 @@ This class creates an Abstract class for Pieces.
 The children of Pieces handle the valid moves.
 """
 class Piece():
-    def __init__(self, side, x, y) -> None:
-        self.side = side
-        self.x = x
-        self.y = y
+    def __init__(self, rank: str, isPromoted, playerNum) -> None:
+        self.rank = rank
+        self.isPromoted = isPromoted
+        self.playerNum = playerNum
 
-    def validMove():
+    def validMove(self):
         pass
 
+    def __str__(self) -> str:
+        if self.isPromoted:
+            return str(self.playerNum + "p" + self.rank)
+        else:
+            return str(self.playerNum + " " + self.rank)
+
 class Pawn(Piece):
-    def validMove(self, board):
-        isValid = {}
-        if self.side == "w":
-            if board[self.x][self.y-1] == "   ":
-                isValid.append((self.x, self.y-1))
-        if self.side == "b":
-            if board[self.x][self.y+1] == "   ":
-                isValid.append((self.x, self.y+1))
+    def __init__(self, playerNum) -> None:
+        super().__init__("p", False, playerNum)
+
+    def validMove(self):
+        pass
 
 class Bishop(Piece):
     def validMove(self):

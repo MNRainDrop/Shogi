@@ -1,6 +1,5 @@
 import pygame as p
 import ShogiEngine
-from Piece import *
 
 
 tileSize = 80

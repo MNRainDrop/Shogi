@@ -1,4 +1,3 @@
-from Piece import *
 """
 This class handles each Square on the board.
 
@@ -11,14 +10,15 @@ class Square():
         self.x = x
         self.y = y
         self.isOccupied = isOccupied
-        self.occupiedBy = None
 
-    def setOccupiedBy(self, piece):
+    '''
+        Sets the Square to an occupied state.
+    '''
+    def setOccupiedBy(self):
         self.isOccupied = True
-        self.occupiedBy = piece
 
     def __str__(self) -> str:
         if self.isOccupied == False:
             return "---"
         else:
-            return self.occupiedBy.__str__()
+            return ""

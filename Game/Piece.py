@@ -1,57 +1,81 @@
+from Square import Square
 """
 This class creates an Abstract class for Pieces.
 The children of Pieces handle the valid moves.
 """
 class Piece():
-    def __init__(self, rank: str, isPromoted, playerNum) -> None:
+    def __init__(self, rank: str, isPromoted, square : Square) -> None:
         self.rank = rank
         self.isPromoted = isPromoted
-        self.playerNum = playerNum
+        self.currentSquare = square
+        self.x = self.currentSquare.x
+        self.y = self.currentSquare.y
 
-    def validMove(self):
+    def validMove(self, x, y) -> list:
+        # the valid moves list will append each possible move per piece using a tuple
+        # format for the tuple will be (x, y)
+        # x = up - / down +
+        # y = left - / right +
         pass
 
     def __str__(self) -> str:
         if self.isPromoted:
-            return str(self.playerNum + "p" + self.rank)
+            return str("p" + self.rank)
         else:
-            return str(self.playerNum + " " + self.rank)
+            return str(" " + self.rank)
 
 class Pawn(Piece):
-    def __init__(self, playerNum) -> None:
-        super().__init__("p", False, playerNum)
+    def __init__(self, square) -> None:
+        super().__init__("p", False, square)
 
-    def validMove(self):
-        pass
+    def validMove(self, x, y) -> list:
+        validMoves = list()
+        validMoves.append((0,-1))
+        validMoves.append((0,1))
+        return validMoves
 
 class Bishop(Piece):
-    def validMove(self):
+    def __init__(self, square) -> None:
+        super().__init__("b", False, square)
+
+    def validMove(self, x, y) -> list:
         pass
 
-class Rook():
-    def validMove():
+class Rook(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("r", False, square)
+
+    def validMove(self, x, y) -> list:
         pass
 
-class Rook():
-    def validMove():
+class Lance(Piece):
+    def validMove(self, x, y) -> list:
         pass
 
-class Lance():
-    def validMove():
+class Knight(Piece):
+    def validMove(self, x, y) -> list:
         pass
 
-class Knight():
-    def validMove():
+class SilverGeneral(Piece):
+    def validMove(self, x, y) -> list:
         pass
 
-class SilverGeneral():
-    def validMove():
+class GoldGeneral(Piece):
+    def validMove(self, x, y) -> list:
         pass
 
-class GoldGeneral():
-    def validMove():
-        pass
+class King(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("k", False, square)
 
-class King():
-    def validMove():
-        pass
+    def validMove(self, x, y) -> list:
+        validMoves = list()
+        validMoves.append(1,0)
+        validMoves.append(0,1)
+        validMoves.append(-1,0)
+        validMoves.append(0,-1)
+        validMoves.append(1,1)
+        validMoves.append(1,-1)
+        validMoves.append(-1,1)
+        validMoves.append(-1,-1)
+        return validMoves

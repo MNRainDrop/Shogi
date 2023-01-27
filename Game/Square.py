@@ -11,12 +11,6 @@ class Square():
         self.y = y
         self.isOccupied = isOccupied
 
-    '''
-        Sets the Square to an occupied state.
-    '''
-    def setOccupiedBy(self):
-        self.isOccupied = True
-
     def __str__(self) -> str:
         if self.isOccupied == False:
             return "---"

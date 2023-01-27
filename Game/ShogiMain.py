@@ -1,14 +1,6 @@
 import pygame as p
-import ShogiEngine
-
-
-tileSize = 80
-boardSize = 9
-height = width = boardSize*tileSize
-maxFPS = 15
-images = {}
-
-
+from Global import *
+from ShogiEngine import GameState
 
 # Main Game Driver
 def main():
@@ -22,7 +14,7 @@ def main():
     loadImages()
 
     #initalize ShogiEngine game state in the gs (game state) variable
-    gs = ShogiEngine.GameState()
+    gs = GameState()
     running = True
 
     
@@ -38,8 +30,9 @@ def main():
                 location = p.mouse.get_pos() 
                 cols = location[0] // tileSize
                 rows = location[1] // tileSize
+
         #draws everything
-        drawAll(screen, cols, rows, gs.board)
+        gs.draw(screen, rows, cols)
         
         p.display.update()
         
@@ -54,38 +47,7 @@ def loadImages():
     for piece in pieces:
         images[piece] = p.transform.scale(p.image.load("Game/images/" + piece + ".png"), (tileSize, tileSize))
 
-def drawAll(screen, cols, rows, board):
-    screen.fill(p.Color("#e6bc5c"))
-    #draws the highlighted square on the board
-    drawHighlighted(screen, cols, rows)
 
-    #draws the lines on the board
-    drawBoard(screen)
-
-    #draw valid moves on the board
-    #drawValid(screen, board, rows, cols)
-
-    #draws the pieces onto the board
-    drawImages(screen, board)
-    
-
-def drawHighlighted(screen, cols, rows):
-    p.draw.rect(screen, p.Color("#74e872"), p.Rect(cols*tileSize, rows*tileSize, tileSize, tileSize))
-
-def drawValid(screen, board):
-    pass
-
-def drawBoard(screen):
-    for x in range(1,9):
-        p.draw.line(screen, p.Color("Black"), (x*tileSize, 0), (x*tileSize, height))
-        p.draw.line(screen, p.Color("Black"), (0, x*tileSize), (width, x*tileSize))
-
-def drawImages(screen, board):
-    for rows in range(boardSize):
-        for cols in range(boardSize):
-            piece = board[rows][cols]
-            if piece != "   ":
-                screen.blit(images[piece], p.Rect(cols*tileSize, rows*tileSize, tileSize, tileSize))
 
 
 if __name__ == "__main__":

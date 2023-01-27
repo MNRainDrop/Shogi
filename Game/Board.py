@@ -29,6 +29,8 @@ class Board():
         self.black.boardPieces.append(Rook(self.board[1][1]))
         self.white.boardPieces.append(Rook(self.board[7][7]))
 
+
+        # links the pieces to the squares
         for i in self.white.boardPieces:
             self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
         for i in self.black.boardPieces:
@@ -41,7 +43,8 @@ class Board():
             for i in range(0,9):
                 # if the current square is occupied run this code
                 if self.board[i][j].isOccupied:
-
+                    
+                    # for each black piece, find the piece with the current square
                     for x in self.black.boardPieces:
                         if x.currentSquare == self.board[j][i]:
                             print("b" + str(x), end=" ")

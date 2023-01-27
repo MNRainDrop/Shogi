@@ -11,7 +11,7 @@ class Piece():
         self.x = self.currentSquare.x
         self.y = self.currentSquare.y
 
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         # the valid moves list will append each possible move per piece using a tuple
         # format for the tuple will be (x, y)
         # x = up - / down +
@@ -26,9 +26,9 @@ class Piece():
 
 class Pawn(Piece):
     def __init__(self, square) -> None:
-        super().__init__("p", False, square)
+        super().__init__("P", False, square)
 
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         validMoves = list()
         validMoves.append((0,-1))
         validMoves.append((0,1))
@@ -36,14 +36,14 @@ class Pawn(Piece):
 
 class Bishop(Piece):
     def __init__(self, square) -> None:
-        super().__init__("b", False, square)
+        super().__init__("B", False, square)
 
     def validMove(self, x, y) -> list:
         pass
 
 class Rook(Piece):
     def __init__(self, square) -> None:
-        super().__init__("r", False, square)
+        super().__init__("R", False, square)
 
     def validMove(self, x, y) -> list:
         pass
@@ -66,9 +66,9 @@ class GoldGeneral(Piece):
 
 class King(Piece):
     def __init__(self, square) -> None:
-        super().__init__("k", False, square)
+        super().__init__("K", False, square)
 
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         validMoves = list()
         validMoves.append(1,0)
         validMoves.append(0,1)

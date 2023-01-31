@@ -69,12 +69,12 @@ class King(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append(1,0)
-        validMoves.append(0,1)
-        validMoves.append(-1,0)
-        validMoves.append(0,-1)
-        validMoves.append(1,1)
-        validMoves.append(1,-1)
-        validMoves.append(-1,1)
-        validMoves.append(-1,-1)
+        validMoves.append((1,0))
+        validMoves.append((0,1))
+        validMoves.append((-1,0))
+        validMoves.append((0,-1))
+        validMoves.append((1,1))
+        validMoves.append((1,-1))
+        validMoves.append((-1,1))
+        validMoves.append((-1,-1))
         return validMoves

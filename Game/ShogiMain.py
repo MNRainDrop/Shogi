@@ -28,8 +28,8 @@ def main():
                 running = False
             elif e.type == p.MOUSEBUTTONDOWN:
                 location = p.mouse.get_pos() 
-                cols = location[0] // tileSize
-                rows = location[1] // tileSize
+                cols = location[1] // tileSize
+                rows = location[0] // tileSize
 
         #draws everything
         gs.draw(screen, rows, cols)

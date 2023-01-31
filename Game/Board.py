@@ -32,9 +32,9 @@ class Board():
 
         # links the pieces to the squares
         for i in self.white.boardPieces:
-            self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
+            self.board[i.currentSquare.y][i.currentSquare.x].isOccupied = True
         for i in self.black.boardPieces:
-            self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
+            self.board[i.currentSquare.y][i.currentSquare.x].isOccupied = True
             
     '''
         Prints the Board

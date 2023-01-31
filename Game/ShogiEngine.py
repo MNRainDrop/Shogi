@@ -18,12 +18,11 @@ class GameState():
         for row in self.board:
             print(*row)
 
-    def draw(self, screen):
+    def draw(self, screen, rows, cols):
         screen.fill(p.Color("#e6bc5c"))
+        self.drawHighlighted(screen, rows, cols)
         self.drawBoard(screen)
-        self.drawHighlighted(screen)
         self.drawImages(screen)
-
 
     def drawBoard(self, screen):
         for x in range(1,9):
@@ -36,5 +35,5 @@ class GameState():
         for x in self.board.black.boardPieces:
             screen.blit(images["b" + str(x)], p.Rect(x.x*tileSize, x.y*tileSize, tileSize, tileSize))
 
-    def drawHighlighted(screen, cols, rows):
-        p.draw.rect(screen, p.Color("#74e872"), p.Rect(cols*tileSize, rows*tileSize, tileSize, tileSize))
+    def drawHighlighted(self, screen, cols, rows):
+        p.draw.rect(screen, p.Color("#74e872"), p.Rect(rows*tileSize, cols*tileSize, tileSize, tileSize))

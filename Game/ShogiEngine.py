@@ -21,9 +21,9 @@ class GameState():
     def draw(self, screen, rows, cols):
         screen.fill(p.Color("#e6bc5c"))
         self.drawHighlighted(screen, rows, cols)
+        self.drawValidMoves(screen, rows, cols)
         self.drawBoard(screen)
         self.drawImages(screen)
-        self.drawValidMoves(screen, rows, cols)
 
     def drawBoard(self, screen):
         for x in range(1,9):
@@ -40,22 +40,21 @@ class GameState():
         p.draw.rect(screen, p.Color("#74e872"), p.Rect(rows*tileSize, cols*tileSize, tileSize, tileSize))
 
     def drawValidMoves(self, screen, rows, cols):
+        # step 1: what piece is it
         if self.board.board[cols][rows].isOccupied:
-            # step 1: what piece is it
             if self.turn % 2 == 0:
                 for x in self.board.white.boardPieces:
                     if x.currentSquare == self.board.board[cols][rows]:
-                        for x in x.validMove():
-                            p.draw.rect(screen, p.Color("#74e872"), p.Rect((rows+x[0])*tileSize+tileSize*0.005, (cols+x[1])*tileSize+tileSize*0.1, tileSize, tileSize*0.9))
+        # step 2: what valid moves does the piece have
+                        for y in x.validMove():
+        # step 3: show valid moves of said piece
+                            p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05, (cols+y[1])*tileSize+tileSize*.05, tileSize*.9, tileSize*.9))
             else:
                 for x in self.board.black.boardPieces:
                     if x.currentSquare == self.board.board[cols][rows]:
-                        for x in x.validMove():
-                            p.draw.rect(screen, p.Color("#74e872"), p.Rect((rows+x[0])*tileSize, (cols+x[1])*tileSize, tileSize, tileSize))
-
-            # step 2: what valid moves does the piece have
-            # step 3: show valid moves of said piece
-            # step 4: show valid moves only on spots where pieces dont occupy
-            # step 5: show valid moves only on spots where the piece's valid moves are not of the same color
+                        for y in x.validMove():
+                            p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05, (cols-y[1])*tileSize+tileSize*.05, tileSize*.9, tileSize*.9))
+        # step 4: show valid moves only on spots where pieces dont occupy
+        # step 5: show valid moves only on spots where the piece's valid moves are not of the same color
         else:
             pass

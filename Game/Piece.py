@@ -14,8 +14,8 @@ class Piece():
     def validMove(self) -> list:
         # the valid moves list will append each possible move per piece using a tuple
         # format for the tuple will be (x, y)
-        # x = up - / down +
-        # y = left - / right +
+        # y = up - / down +
+        # x = left - / right +
         pass
 
     def __str__(self) -> str:
@@ -31,7 +31,6 @@ class Pawn(Piece):
     def validMove(self) -> list:
         validMoves = list()
         validMoves.append((0,-1))
-        validMoves.append((0,1))
         return validMoves
 
 class Bishop(Piece):

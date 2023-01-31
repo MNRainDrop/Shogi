@@ -35,6 +35,7 @@ class Board():
             self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
         for i in self.black.boardPieces:
             self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
+            
     '''
         Prints the Board
     '''

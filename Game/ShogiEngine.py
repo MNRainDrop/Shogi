@@ -23,6 +23,7 @@ class GameState():
         self.drawHighlighted(screen, rows, cols)
         self.drawBoard(screen)
         self.drawImages(screen)
+        self.drawValidMoves(screen, )
 
     def drawBoard(self, screen):
         for x in range(1,9):
@@ -37,3 +38,6 @@ class GameState():
 
     def drawHighlighted(self, screen, cols, rows):
         p.draw.rect(screen, p.Color("#74e872"), p.Rect(rows*tileSize, cols*tileSize, tileSize, tileSize))
+
+    def drawValidMoves(self, screen, cols, rows):
+        

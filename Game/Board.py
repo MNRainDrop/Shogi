@@ -37,6 +37,12 @@ class Board():
             self.board[i.currentSquare.y][i.currentSquare.x].isOccupied = True
             
     '''
+        Moves pieces in the board array and reassigns the current piece square
+    '''
+    def movePiece(self):
+        pass
+
+    '''
         Prints the Board
     '''
     def printBoard(self):

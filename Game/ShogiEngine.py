@@ -25,6 +25,11 @@ class GameState():
         self.drawBoard(screen)
         self.drawImages(screen)
 
+    # Currently only increases the turn count
+    def movePiece(self):
+        self.board.movePiece() # does nothing at the moment
+        self.turn += 1
+
     def drawBoard(self, screen):
         for x in range(1,9):
             p.draw.line(screen, p.Color("Black"), (x*tileSize, 0), (x*tileSize, height))

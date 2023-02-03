@@ -8,22 +8,22 @@ Every Board contains an 9x9 2d array/list of Squares.
 """
 class Board():
     def __init__(self) -> None:
-        self.board = [[Square(i,j) for i in range(9)] for j in range(9)]
+        self.board = [[Square(j,i) for i in range(9)] for j in range(9)]
         self.white = Player()
         self.black = Player()
         
         # fills in the pawns
         for i in range(0,9):
-            self.black.boardPieces.append(Pawn(self.board[2][i]))
-            self.white.boardPieces.append(Pawn(self.board[6][i]))
+            self.black.boardPieces.append(Pawn(self.board[i][2]))
+            self.white.boardPieces.append(Pawn(self.board[i][6]))
 
         # fills in the kings
-        self.black.boardPieces.append(King(self.board[0][4]))
-        self.white.boardPieces.append(King(self.board[8][4]))
+        self.black.boardPieces.append(King(self.board[4][0]))
+        self.white.boardPieces.append(King(self.board[4][8]))
 
         # fills in the bishops
-        self.black.boardPieces.append(Bishop(self.board[1][7]))
-        self.white.boardPieces.append(Bishop(self.board[7][1]))
+        self.black.boardPieces.append(Bishop(self.board[7][1]))
+        self.white.boardPieces.append(Bishop(self.board[1][7]))
 
         # fills in the rooks
         self.black.boardPieces.append(Rook(self.board[1][1]))
@@ -32,9 +32,9 @@ class Board():
 
         # links the pieces to the squares
         for i in self.white.boardPieces:
-            self.board[i.currentSquare.y][i.currentSquare.x].isOccupied = True
+            self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
         for i in self.black.boardPieces:
-            self.board[i.currentSquare.y][i.currentSquare.x].isOccupied = True
+            self.board[i.currentSquare.x][i.currentSquare.y].isOccupied = True
             
     '''
         Moves pieces in the board array and reassigns the current piece square
@@ -53,12 +53,12 @@ class Board():
                     
                     # for each black piece, find the piece with the current square
                     for x in self.black.boardPieces:
-                        if x.currentSquare == self.board[j][i]:
+                        if x.currentSquare == self.board[i][j]:
                             print("b" + str(x), end=" ")
 
                     # for each white piece, find the piece with the current square
                     for x in self.white.boardPieces:
-                        if x.currentSquare == self.board[j][i]:
+                        if x.currentSquare == self.board[i][j]:
                             print("w" + str(x), end=" ")
                     
                 # if the current square on the board is not occupied, just print the square

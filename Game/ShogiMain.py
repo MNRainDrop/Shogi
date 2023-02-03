@@ -7,7 +7,7 @@ def main():
 
     #initialize pygame
     p.init()
-    screen = p.display.set_mode((height, width))
+    screen = p.display.set_mode((width + 400, height + 100))
     clock = p.time.Clock()
 
     #initialize images
@@ -29,8 +29,12 @@ def main():
             elif e.type == p.MOUSEBUTTONDOWN:
                 if e.button == 3:
                     location = p.mouse.get_pos() 
-                    cols = location[1] // tileSize
-                    rows = location[0] // tileSize
+                    cols = (location[1] - heightOffset) // tileSize
+                    rows = (location[0] - widthOffset) // tileSize
+                    if cols >= 9 or cols < 0:
+                        cols = -1
+                    if rows >= 9 or rows < 0:
+                        rows = -1
 
             # Incrememnts the turn count so we can test the valid moves
             elif e.type == p.KEYDOWN:

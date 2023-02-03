@@ -37,30 +37,42 @@ class Bishop(Piece):
     def __init__(self, square) -> None:
         super().__init__("B", False, square)
 
-    def validMove(self, x, y) -> list:
-        pass
+    def validMove(self) -> list:
+        validMoves = list()
+        for i in range(1,9):
+            validMoves.append((i,i))
+            validMoves.append((i,-i))
+            validMoves.append((-i,i))
+            validMoves.append((-i,-i))
+        return validMoves
 
 class Rook(Piece):
     def __init__(self, square) -> None:
         super().__init__("R", False, square)
 
-    def validMove(self, x, y) -> list:
-        pass
+    def validMove(self) -> list:
+        validMoves = list()
+        for i in range(1,9):
+            validMoves.append((i,0))
+            validMoves.append((0,i))
+            validMoves.append((-i,0))
+            validMoves.append((0,-i))
+        return validMoves
 
 class Lance(Piece):
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         pass
 
 class Knight(Piece):
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         pass
 
 class SilverGeneral(Piece):
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         pass
 
 class GoldGeneral(Piece):
-    def validMove(self, x, y) -> list:
+    def validMove(self) -> list:
         pass
 
 class King(Piece):

@@ -29,6 +29,29 @@ class Board():
         self.black.boardPieces.append(Rook(self.board[1][1]))
         self.white.boardPieces.append(Rook(self.board[7][7]))
 
+        #fills in the lances
+        self.black.boardPieces.append(Lance(self.board[0][0]))
+        self.black.boardPieces.append(Lance(self.board[0][8]))
+        self.white.boardPieces.append(Lance(self.board[8][0]))
+        self.white.boardPieces.append(Lance(self.board[8][8]))
+
+        #fills in the knights
+        self.black.boardPieces.append(Knight(self.board[1][0]))
+        self.black.boardPieces.append(Knight(self.board[7][0]))
+        self.white.boardPieces.append(Knight(self.board[1][8]))
+        self.white.boardPieces.append(Knight(self.board[7][8]))
+
+        #fills in the silver generals
+        self.black.boardPieces.append(SilverGeneral(self.board[2][0]))
+        self.black.boardPieces.append(SilverGeneral(self.board[6][0]))
+        self.white.boardPieces.append(SilverGeneral(self.board[2][8]))
+        self.white.boardPieces.append(SilverGeneral(self.board[6][8]))
+
+        #fills in the gold generals
+        self.black.boardPieces.append(GoldGeneral(self.board[3][0]))
+        self.black.boardPieces.append(GoldGeneral(self.board[5][0]))
+        self.white.boardPieces.append(GoldGeneral(self.board[3][8]))
+        self.white.boardPieces.append(GoldGeneral(self.board[5][8]))
 
         # links the pieces to the squares
         for i in self.white.boardPieces:

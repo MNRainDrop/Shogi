@@ -60,20 +60,51 @@ class Rook(Piece):
         return validMoves
 
 class Lance(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("L", False, square)
+
     def validMove(self) -> list:
-        pass
+        validMoves = list()
+        for i in range(1,9):
+            validMoves.append((0,-i))
+        return validMoves
 
 class Knight(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("N", False, square)
+
     def validMove(self) -> list:
-        pass
+        validMoves = list()
+        validMoves.append((-1,-2))
+        validMoves.append((1,-2))
+        return validMoves
 
 class SilverGeneral(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("S", False, square)
+
     def validMove(self) -> list:
-        pass
+        validMoves = list()
+        validMoves.append((-1,-1))
+        validMoves.append((1,-1))
+        validMoves.append((0,-1))
+        validMoves.append((-1,1))
+        validMoves.append((1,1))
+        return validMoves
 
 class GoldGeneral(Piece):
+    def __init__(self, square) -> None:
+        super().__init__("G", False, square)
+
     def validMove(self) -> list:
-        pass
+        validMoves = list()
+        validMoves.append((1,0))
+        validMoves.append((-1,0))
+        validMoves.append((0,-1))
+        validMoves.append((0,1))
+        validMoves.append((-1,-1))
+        validMoves.append((1,-1))
+        return validMoves
 
 class King(Piece):
     def __init__(self, square) -> None:

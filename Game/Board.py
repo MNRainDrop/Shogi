@@ -31,8 +31,8 @@ class Board():
 
         #fills in the lances
         self.black.boardPieces.append(Lance(self.board[0][0]))
-        self.black.boardPieces.append(Lance(self.board[0][8]))
-        self.white.boardPieces.append(Lance(self.board[8][0]))
+        self.black.boardPieces.append(Lance(self.board[8][0]))
+        self.white.boardPieces.append(Lance(self.board[0][8]))
         self.white.boardPieces.append(Lance(self.board[8][8]))
 
         #fills in the knights

@@ -59,6 +59,13 @@ class GameState():
         # step 4: show valid moves only on spots where pieces dont occupy
                                 if not self.board.board[rows + y[0]][cols + y[1]].isOccupied:
                                     p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05 + widthOffset, (cols+y[1])*tileSize+tileSize*.05 + heightOffset, tileSize*.9, tileSize*.9))
+        # step 5: show valid moves only on spots where the piece can move                                   
+                                else:
+                                    if self.board.board in self.board.white.boardPieces:
+                                        print("I LOVE FOOD")
+                                    if self.board.board in self.board.black.boardPieces:
+                                        print("I HATE FOOD")
+
             else:
                 for x in self.board.black.boardPieces:
                     if x.currentSquare == self.board.board[rows][cols]:

@@ -56,6 +56,7 @@ class GameState():
                         for y in x.validMove():
         # step 3: show valid moves of said piece
                             if rows+y[0] >= 0 and rows+y[0] < 9 and cols+y[1] >= 0 and cols+y[1] < 9:
+        # step 4: show valid moves only on spots where pieces dont occupy
                                 if not self.board.board[rows + y[0]][cols + y[1]].isOccupied:
                                     p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05 + widthOffset, (cols+y[1])*tileSize+tileSize*.05 + heightOffset, tileSize*.9, tileSize*.9))
             else:
@@ -63,9 +64,9 @@ class GameState():
                     if x.currentSquare == self.board.board[rows][cols]:
                         for y in x.validMove():
                             if rows+y[0] >= 0 and rows+y[0] < 9 and cols-y[1] >= 0 and cols-y[1] < 9:
-                                if not self.board.board[rows + y[0]][cols + y[1]].isOccupied:
-                                    p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05 + widthOffset, (cols-y[1])*tileSize+tileSize*.05 + heightOffset, tileSize*.9, tileSize*.9))
         # step 4: show valid moves only on spots where pieces dont occupy
+                                if not self.board.board[rows + y[0]][cols - y[1]].isOccupied:
+                                    p.draw.rect(screen, p.Color("red"), p.Rect((rows+y[0])*tileSize +tileSize*.05 + widthOffset, (cols-y[1])*tileSize+tileSize*.05 + heightOffset, tileSize*.9, tileSize*.9))
         # step 5: show valid moves only on spots where the piece's valid moves are not of the same color
         else:
             pass

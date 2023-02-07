@@ -27,7 +27,7 @@ def main():
             if e.type == p.QUIT:
                 running = False
             elif e.type == p.MOUSEBUTTONDOWN:
-                if e.button == 3:
+                if e.button == 1:
                     location = p.mouse.get_pos() 
                     cols = (location[1] - heightOffset) // tileSize
                     rows = (location[0] - widthOffset) // tileSize
@@ -39,7 +39,7 @@ def main():
             # Incrememnts the turn count so we can test the valid moves
             elif e.type == p.KEYDOWN:
                 if e.key == p.K_1:
-                    gs.movePiece()
+                    gs.movePiece(rows, cols)
 
         #draws everything
         gs.draw(screen, rows, cols)

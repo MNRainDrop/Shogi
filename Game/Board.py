@@ -62,7 +62,7 @@ class Board():
     '''
         Moves pieces in the board array and reassigns the current piece square
     '''
-    def movePiece(self, screen, rows, cols):
+    def movePiece(self, rows, cols):
         pass
 
     '''

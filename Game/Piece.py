@@ -39,11 +39,10 @@ class Bishop(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        for i in range(1,9):
-            validMoves.append((i,i))
-            validMoves.append((i,-i))
-            validMoves.append((-i,i))
-            validMoves.append((-i,-i))
+        validMoves.append(('+','+'))
+        validMoves.append(('+','-'))
+        validMoves.append(('-','+'))
+        validMoves.append(('-','-'))
         return validMoves
 
 class Rook(Piece):
@@ -52,11 +51,10 @@ class Rook(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        for i in range(1,9):
-            validMoves.append((i,0))
-            validMoves.append((0,i))
-            validMoves.append((-i,0))
-            validMoves.append((0,-i))
+        validMoves.append(('+',0))
+        validMoves.append((0,'+'))
+        validMoves.append(('-',0))
+        validMoves.append((0,'-'))
         return validMoves
 
 class Lance(Piece):
@@ -65,8 +63,7 @@ class Lance(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        for i in range(1,9):
-            validMoves.append((0,-i))
+        validMoves.append((0,'-'))
         return validMoves
 
 class Knight(Piece):
@@ -77,6 +74,12 @@ class Knight(Piece):
         validMoves = list()
         validMoves.append((-1,-2))
         validMoves.append((1,-2))
+        validMoves.append((-1,2))
+        validMoves.append((1,2))
+        validMoves.append((2,1))
+        validMoves.append((2,-1))
+        validMoves.append((-2,1))
+        validMoves.append((-2,-1))
         return validMoves
 
 class SilverGeneral(Piece):

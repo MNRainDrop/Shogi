@@ -21,6 +21,7 @@ def main():
 
     rows = -1
     cols = -1
+    validClick = 1
 
     while running:
         for e in p.event.get():
@@ -28,6 +29,9 @@ def main():
                 running = False
             elif e.type == p.MOUSEBUTTONDOWN:
                 if e.button == 1:
+                    #on left mouse click down
+                    #select piece and show valid moves
+                    #will be used to drag pieces
                     location = p.mouse.get_pos() 
                     cols = (location[1] - heightOffset) // tileSize
                     rows = (location[0] - widthOffset) // tileSize
@@ -35,6 +39,27 @@ def main():
                         cols = -1
                     if rows >= 9 or rows < 0:
                         rows = -1
+                    try:
+                        piece = gs.board.getPiece(rows, cols, gs.turn)
+                        gs.getValidMoves(rows, cols)
+                    except:
+                        validClick = 0
+                        piece = None
+                    else:
+                        validClick = 1
+            elif e.type == p.MOUSEBUTTONUP and validClick:
+                if e.button == 1:
+                    #on left click up
+                    #selected piece will be placed in certain spot
+                    location = p.mouse.get_pos() 
+                    cols = (location[1] - heightOffset) // tileSize
+                    rows = (location[0] - widthOffset) // tileSize
+                    if cols >= 9 or cols < 0:
+                        cols = -1
+                    if rows >= 9 or rows < 0:
+                        rows = -1
+                    gs.movePiece(rows, cols, piece)
+                    validClick = 0
 
             # Incrememnts the turn count so we can test the valid moves
             elif e.type == p.KEYDOWN:
@@ -56,9 +81,6 @@ def loadImages():
                 
     for piece in pieces:
         images[piece] = p.transform.scale(p.image.load("Game/images/" + piece + ".png"), (tileSize, tileSize))
-
-
-
 
 if __name__ == "__main__":
     main()

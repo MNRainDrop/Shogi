@@ -1,15 +1,17 @@
 from Square import Square
-"""
+
+'''
 This class creates an Abstract class for Pieces.
 The children of Pieces handle the valid moves.
-"""
+'''
 class Piece():
     def __init__(self, rank: str, isPromoted, square : Square) -> None:
         self.rank = rank
         self.isPromoted = isPromoted
-        self.currentSquare = square
-        self.x = self.currentSquare.x
-        self.y = self.currentSquare.y
+        self.square = square
+        self.x = self.square.x
+        self.y = self.square.y
+        self.color = 0
 
     def validMove(self) -> list:
         # the valid moves list will append each possible move per piece using a tuple
@@ -30,7 +32,10 @@ class Pawn(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((0,-1))
+        validMoves.append([0,-1])
+        if self.color == 1:
+            for i in validMoves:
+                i[1] *= -1
         return validMoves
 
 class Bishop(Piece):
@@ -39,10 +44,10 @@ class Bishop(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append(('+','+'))
-        validMoves.append(('+','-'))
-        validMoves.append(('-','+'))
-        validMoves.append(('-','-'))
+        validMoves.append(['+','+'])
+        validMoves.append(['+','-'])
+        validMoves.append(['-','+'])
+        validMoves.append(['-','-'])
         return validMoves
 
 class Rook(Piece):
@@ -51,10 +56,10 @@ class Rook(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append(('+',0))
-        validMoves.append((0,'+'))
-        validMoves.append(('-',0))
-        validMoves.append((0,'-'))
+        validMoves.append(['+',0])
+        validMoves.append([0,'+'])
+        validMoves.append(['-',0])
+        validMoves.append([0,'-'])
         return validMoves
 
 class Lance(Piece):
@@ -63,7 +68,7 @@ class Lance(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((0,'-'))
+        validMoves.append([0,'-'])
         return validMoves
 
 class Knight(Piece):
@@ -72,14 +77,17 @@ class Knight(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((-1,-2))
-        validMoves.append((1,-2))
-        validMoves.append((-1,2))
-        validMoves.append((1,2))
-        validMoves.append((2,1))
-        validMoves.append((2,-1))
-        validMoves.append((-2,1))
-        validMoves.append((-2,-1))
+        validMoves.append([-1,-2])
+        validMoves.append([1,-2])
+        validMoves.append([-1,2])
+        validMoves.append([1,2])
+        validMoves.append([2,1])
+        validMoves.append([2,-1])
+        validMoves.append([-2,1])
+        validMoves.append([-2,-1])
+        if self.color == 1:
+            for i in validMoves:
+                i[1] *= -1
         return validMoves
 
 class SilverGeneral(Piece):
@@ -88,11 +96,14 @@ class SilverGeneral(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((-1,-1))
-        validMoves.append((1,-1))
-        validMoves.append((0,-1))
-        validMoves.append((-1,1))
-        validMoves.append((1,1))
+        validMoves.append([-1,-1])
+        validMoves.append([1,-1])
+        validMoves.append([0,-1])
+        validMoves.append([-1,1])
+        validMoves.append([1,1])
+        if self.color == 1:
+            for i in validMoves:
+                i[1] *= -1
         return validMoves
 
 class GoldGeneral(Piece):
@@ -101,12 +112,15 @@ class GoldGeneral(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((1,0))
-        validMoves.append((-1,0))
-        validMoves.append((0,-1))
-        validMoves.append((0,1))
-        validMoves.append((-1,-1))
-        validMoves.append((1,-1))
+        validMoves.append([1,0])
+        validMoves.append([-1,0])
+        validMoves.append([0,-1])
+        validMoves.append([0,1])
+        validMoves.append([-1,-1])
+        validMoves.append([1,-1])
+        if self.color == 1:
+            for i in validMoves:
+                i[1] *= -1
         return validMoves
 
 class King(Piece):
@@ -115,12 +129,15 @@ class King(Piece):
 
     def validMove(self) -> list:
         validMoves = list()
-        validMoves.append((1,0))
-        validMoves.append((0,1))
-        validMoves.append((-1,0))
-        validMoves.append((0,-1))
-        validMoves.append((1,1))
-        validMoves.append((1,-1))
-        validMoves.append((-1,1))
-        validMoves.append((-1,-1))
+        validMoves.append([0,1])
+        validMoves.append([0,-1])
+        validMoves.append([1,0])
+        validMoves.append([-1,0])
+        validMoves.append([1,1])
+        validMoves.append([1,-1])
+        validMoves.append([-1,1])
+        validMoves.append([-1,-1])
+        if self.color == 1:
+            for i in validMoves:
+                i[1] *= -1
         return validMoves

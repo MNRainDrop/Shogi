@@ -18,17 +18,22 @@ class GameState():
         for row in self.board:
             print(*row)
 
-    # Currently only increases the turn count
-    def movePiece(self, rows, cols):
-        self.board.movePiece(rows, cols) # does nothing at the moment
-        self.turn += 1
+    def movePiece(self, rows, cols, piece):
+        if self.board.movePiece(rows, cols, piece) != 0:
+            self.board.resetValidMoves()
+            self.turn += 1
+        else:
+            self.board.resetValidMoves()
+        
 
+    def getValidMoves(self, rows, cols):
+        self.board.validMoves(rows, cols, self.turn)
 
     def draw(self, screen, rows, cols):
         screen.fill(p.Color("#e6bc5c"))
         if (rows >= 0 and cols >= 0):
             self.drawHighlighted(screen, rows, cols)
-            self.drawValidMoves(screen, rows, cols)
+        self.drawValidMoves(screen)
         self.drawBoard(screen)
         self.drawImages(screen)
 
@@ -46,13 +51,19 @@ class GameState():
     def drawHighlighted(self, screen, rows, cols):
         p.draw.rect(screen, p.Color("#74e872"), p.Rect(rows*tileSize + widthOffset, cols*tileSize + heightOffset, tileSize, tileSize))
 
-    def drawValidMoves(self, screen, rows, cols):
+    def drawValidMoves(self, screen):
+        for j in range(0,9):
+            for i in range(0,9):
+                # if the current square is a valid move
+                if self.board.board[i][j].validMove:
+                    p.draw.rect(screen, p.Color("red"), p.Rect(i*tileSize +tileSize*.05 + widthOffset, j*tileSize+tileSize*.05 + heightOffset, tileSize*.9, tileSize*.9))
+        return
         # step 1: what piece is it
         if self.board.board[rows][cols].isOccupied:
             # For White Pieces
             if self.turn % 2 == 0:
                 for x in self.board.white.boardPieces:
-                    if x.currentSquare == self.board.board[rows][cols]:
+                    if x.square == self.board.board[rows][cols]:
         # step 2: what valid moves does the piece have
                         for y in x.validMove():
         # step 3: show valid moves of said piece
